@@ -35,7 +35,6 @@ function App() {
   return (
     <Wrapper>
       <Header addCard={addCard} />
-      console.log(cards);
       <Main isLoaded={isLoaded} cardList={cards} />
     </Wrapper>
   )
