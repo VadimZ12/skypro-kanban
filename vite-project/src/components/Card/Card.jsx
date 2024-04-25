@@ -1,4 +1,17 @@
-import { CardItem, CardTheme, CardThemeText, CardWrapper } from "./Card.style";
+import {
+  CardBtn,
+  CardBtnDiv,
+  CardContent,
+  CardDate,
+  CardDateP,
+  CardDateSvg,
+  CardGroup,
+  CardItem,
+  CardTheme,
+  CardThemeText,
+  CardTitle,
+  CardWrapper,
+} from "./Card.styled";
 
 function Card({ name, theme, date }) {
   let color;
@@ -18,24 +31,24 @@ function Card({ name, theme, date }) {
   return (
     <CardItem>
       <CardWrapper>
-        <div className="card__group">
+        <CardGroup>
           <CardTheme $themeColor={color}>
             <CardThemeText>{theme}</CardThemeText>
           </CardTheme>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div />
-              <div />
-              <div />
-            </div>
+            <CardBtn>
+              <CardBtnDiv></CardBtnDiv>
+              <CardBtnDiv></CardBtnDiv>
+              <CardBtnDiv></CardBtnDiv>
+            </CardBtn>
           </a>
-        </div>
-        <div className="card__content">
+        </CardGroup>
+        <CardContent>
           <a href="" target="_blank">
-            <h3 className="card__title">{name}</h3>
+            <CardTitle>{name}</CardTitle>
           </a>
-          <div className="card__date">
-            <svg
+          <CardDate>
+            <CardDateSvg
               xmlns="http://www.w3.org/2000/svg"
               width={13}
               height={13}
@@ -62,10 +75,10 @@ function Card({ name, theme, date }) {
                   <rect width={13} height={13} fill="white" />
                 </clipPath>
               </defs>
-            </svg>
-            <p>{date}</p>
-          </div>
-        </div>
+            </CardDateSvg>
+            <CardDateP>{date}</CardDateP>
+          </CardDate>
+        </CardContent>
       </CardWrapper>
     </CardItem>
   );
