@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { HeaderBlock, HeaderImg, HeaderItem, HeaderLogo, HeaderNav, MainButton} from "./Header.styled";
+import {
+  HeaderBlock,
+  HeaderImg,
+  HeaderItem,
+  HeaderLogo,
+  HeaderNav,
+  MainButton,
+} from "./Header.styled";
 import { Container } from "../Common/Common.styled";
 
 function Header({ addCard }) {
@@ -14,19 +21,16 @@ function Header({ addCard }) {
         <HeaderBlock>
           <HeaderLogo>
             <a href="" target="_self">
-              <HeaderImg> src="images/logo" alt="logo" </HeaderImg>
+              <HeaderImg src="public/images/logo.png" alt="logo" />
             </a>
           </HeaderLogo>
           <HeaderLogo>
             <a href="" target="_self">
-              <HeaderImg>src="images/logo_dark.png" alt="logo" </HeaderImg>
+              <HeaderImg src="public/images/logo_dark.png" alt="logo" />
             </a>
           </HeaderLogo>
           <HeaderNav>
-            <MainButton
-              id="btnMainNew"
-              onClick={addCard}
-            >
+            <MainButton id="btnMainNew" onClick={addCard}>
               Создать новую задачу
             </MainButton>
             <a href="#" className="header__user _hover02" onClick={togglePopUp}>
