@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { appRoutes } from "../lib/appRoutes";
 import { signup } from "../api";
 import { useState } from "react";
-import { Wrapper } from "../components/Wrapper/Wrapper";
+import Wrapper from "../components/Wrapper/Wrapper";
 
 export default function Register({ loginUser }) {
   const [registerData, setregisterData] = useState({

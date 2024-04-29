@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Wrapper } from "../components/Wrapper/Wrapper";
+import Wrapper from "../components/Wrapper/Wrapper";
 import { appRoutes } from "../lib/appRoutes";
 import { useState } from "react";
 import { signin } from "../api";

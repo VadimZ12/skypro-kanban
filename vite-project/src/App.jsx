@@ -8,7 +8,7 @@ import ExitPage from "./Pages/ExitPage";
 import Signin from "./Pages/SignInPage";
 import NotFound from "./Pages/NotFoundPage";
 import Register from "./Pages/SignUpPage";
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute"
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 
 export default function App() {
   const [user, setUser] = useState(null);
