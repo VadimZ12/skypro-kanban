@@ -1,60 +1,63 @@
+import { Link } from "react-router-dom";
+import { Container } from "../../styled/common/Common.styled";
+import * as S from "./Header.styled";
 import { useState } from "react";
-import {
-  HeaderBlock,
-  HeaderImg,
-  HeaderItem,
-  HeaderLogo,
-  HeaderNav,
-  MainButton,
-} from "./Header.styled";
-import { Container } from "../Common/Common.styled";
+import { appRoutes } from "../../lib/appRoutes";
 
-function Header({ addCard }) {
+export default function Header({ onCardAdd }) {
   const [isOpened, setIsOpened] = useState(false);
-  function togglePopUp() {
-    setIsOpened((isOpened) => !isOpened);
+  function togglePopup() {
+    setIsOpened((prev) => !prev);
   }
 
   return (
-    <HeaderItem>
+    <S.StyledHeader>
       <Container>
-        <HeaderBlock>
-          <HeaderLogo>
+        <S.HeaderBlock>
+          <S.HeaderLogo className="_show _light">
             <a href="" target="_self">
-              <HeaderImg src="public/images/logo.png" alt="logo" />
+              <img src="/images/logo.png" alt="logo" />
             </a>
-          </HeaderLogo>
-          <HeaderLogo>
+          </S.HeaderLogo>
+          <S.HeaderLogo className="_dark">
             <a href="" target="_self">
-              <HeaderImg src="public/images/logo_dark.png" alt="logo" />
+              <img src="images/logo_dark.png" alt="logo" />
             </a>
-          </HeaderLogo>
-          <HeaderNav>
-            <MainButton id="btnMainNew" onClick={addCard}>
-              Создать новую задачу
-            </MainButton>
-            <a href="#" className="header__user _hover02" onClick={togglePopUp}>
+          </S.HeaderLogo>
+          <S.HeaderNav>
+            <S.HeaderBtnMainNew onClick={onCardAdd} id="btnMainNew">
+              <S.HeaderBtnMainNewLink href="#popNewCard">
+                Создать новую задачу
+              </S.HeaderBtnMainNewLink>
+            </S.HeaderBtnMainNew>
+            <S.HeaderUser onClick={togglePopup} href="#user-set-target">
               Ivan Ivanov
-            </a>
+            </S.HeaderUser>
             {isOpened && (
-              <div className="header__pop-user-set pop-user-set">
+              <S.HeaderPopUserSet id="user-set-target">
                 {/* <a href="">x</a> */}
-                <p className="pop-user-set__name">Ivan Ivanov</p>
-                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-                <div className="pop-user-set__theme">
-                  <p>Темная тема</p>
-                  <input type="checkbox" className="checkbox" name="checkbox" />
-                </div>
-                <button type="button" className="_hover03">
-                  <a href="#popExit">Выйти</a>
-                </button>
-              </div>
+                <S.HeaderPopUserSetName>Ivan Ivanov</S.HeaderPopUserSetName>
+                <S.HeaderPopUserSetMail>
+                  ivan.ivanov@gmail.com
+                </S.HeaderPopUserSetMail>
+                <S.HeaderPopUserSetTheme>
+                  <S.HeaderPopUserSetThemeText>
+                    Темная тема
+                  </S.HeaderPopUserSetThemeText>
+                  <S.HeaderPopUserSetThemeInp
+                    // onChange={toggleTheme}
+                    type="checkbox"
+                    name="checkbox"
+                  />
+                </S.HeaderPopUserSetTheme>
+                <Link to={appRoutes.EXIT}>
+                  <S.HeaderPopUserSetBtn>Выйти</S.HeaderPopUserSetBtn>
+                </Link>
+              </S.HeaderPopUserSet>
             )}
-          </HeaderNav>
-        </HeaderBlock>
+          </S.HeaderNav>
+        </S.HeaderBlock>
       </Container>
-    </HeaderItem>
+    </S.StyledHeader>
   );
 }
-
-export default Header;

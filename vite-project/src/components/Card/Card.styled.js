@@ -1,21 +1,14 @@
 import styled from "styled-components";
-import { themeStyles } from "../../lib/theme";
-import { breakpoints } from "../../lib/breakpoints";
+import { topicStyles } from "../../lib/topic";
 
-export const CardItem = styled.div`
+export const CardsItem = styled.div`
   padding: 5px;
   animation-name: card-animation;
   animation-duration: 500ms;
   animation-timing-function: linear;
-
-  @media(max-width:${breakpoints.xl}px) { 
-    width: 100%;
-    display: flex;
-    overflow-y: auto;
-  }
 `;
 
-export const CardWrapper = styled.div`
+export const CardsCard = styled.div`
   width: 220px;
   height: 130px;
   background-color: #ffffff;
@@ -26,10 +19,10 @@ export const CardWrapper = styled.div`
   justify-content: stretch;
   padding: 15px 13px 19px;
 
-  @media(max-width:${breakpoints.xl}px) { 
+  @media screen and (max-width: 1200px) {
     width: 220px;
     height: 130px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -48,25 +41,6 @@ export const CardGroup = styled.div`
   justify-content: space-between;
 `;
 
-export const CardThemeText = styled.p`
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 10px;
-`;
-
-export const CardTheme = styled.div`
-  width: auto;
-  height: 20px;
-  padding: 5px 14px;
-  border-radius: 18px;
-  background-color: ${({ $themeColor }) =>
-    themeStyles[$themeColor]?.backgroundColor || "#b4fdd1"};
-
-  ${CardThemeText} {
-    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#06b16e"};
-  }
-`;
-
 export const CardBtn = styled.div`
   width: 24px;
   height: 24px;
@@ -76,11 +50,30 @@ export const CardBtn = styled.div`
   padding: 2px;
 `;
 
-export const CardBtnDiv = styled.div`
+export const CardBtnPoint = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #94A6BE;
+  background-color: #94a6be;
+`;
+
+export const TopicText = styled.p`
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 10px;
+`;
+
+export const CardTopic = styled.div`
+  width: auto;
+  height: 20px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  background-color: ${({ $themeColor }) =>
+    topicStyles[$themeColor]?.backgroundColor || "#94A6BE"};
+
+  ${TopicText} {
+    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#FFFFFF"};
+  }
 `;
 
 export const CardContent = styled.div`
@@ -106,13 +99,12 @@ export const CardDate = styled.div`
 `;
 
 export const CardDateSvg = styled.svg`
-width: 13px;
+  width: 13px;
 `;
-
-export const CardDateP = styled.p`
+export const CardDateValue = styled.p`
   margin-left: 6px;
   font-size: 10px;
   line-height: 13px;
-  color: #94A6BE;
+  color: #94a6be;
   letter-spacing: 0.2px;
 `;
