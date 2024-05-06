@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
-import { appRoutes } from "../lib/appRoutes";
-import { signup } from "../api";
+import { Link, useNavigate } from "react-router-dom";
+import Wrapper from "../../components/Wrapper/Wrapper";
+import { appRoutes } from "../../lib/appRoutes";
+import { signup } from "../../api";
 import { useState } from "react";
-import Wrapper from "../components/Wrapper/Wrapper";
+import { useUser } from "../../hooks/useUser";
 
-export default function Register({ loginUser }) {
+export default function Register() {
+  const { login } = useUser();
+  const navigate = useNavigate();
   const [registerData, setregisterData] = useState({
     login: "",
     name: "",
@@ -22,7 +25,8 @@ export default function Register({ loginUser }) {
     e.preventDefault();
     await signup(registerData)
       .then((responseData) => {
-        loginUser(responseData.user);
+        login(responseData.user);
+        navigate(appRoutes.MAIN);
       })
       .catch((error) => {
         alert(error.message + ": попробуйте повторить запрос");
@@ -42,8 +46,8 @@ export default function Register({ loginUser }) {
                 className="modal__input first-name"
                 type="text"
                 onChange={handleInputChange}
-                name="first-name"
-                id="first-name"
+                name="firstName"
+                id="firsName"
                 value={registerData.name}
                 placeholder="Имя"
               />
