@@ -46,8 +46,8 @@ export default function Register() {
                 className="modal__input first-name"
                 type="text"
                 onChange={handleInputChange}
-                name="firstName"
-                id="firsName"
+                name="name"
+                id="first-name"
                 value={registerData.name}
                 placeholder="Имя"
               />
