@@ -1,4 +1,4 @@
-export const topicStyles = {
+export const themeStyles = {
   _purple: {
     backgroundColor: "#e9d4ff",
     color: "#9a48f1",
@@ -16,11 +16,3 @@ export const topicStyles = {
     color: "#ffffff",
   },
 };
-
-
-
-export const topicHeader = {
-  "Web Design": "_orange",
-  "Research": "_green",
-  "Copywriting": "_purple"
-}

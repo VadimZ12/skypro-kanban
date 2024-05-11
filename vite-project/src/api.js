@@ -1,78 +1,96 @@
-const baseHost = "https://wedev-api.sky.pro/api/kanban";
+const API_URL_USER = "https://wedev-api.sky.pro/api/user";
+const API_URL = "https://wedev-api.sky.pro/api/kanban";
 
-const userHost = "https://wedev-api.sky.pro/api/user";
-
-//Получение задач
-export async function getTodos({ token }) {
-  const response = await fetch(baseHost, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  if (!response.status === 200) {
-    throw new Error("Ошибка");
-  }
-  const data = await response.json();
-  return data;
-}
-
-//Добавить задачу в список
-export async function postTodo({ token }, taskData) {
-  const response = await fetch(baseHost, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+export async function login({ login, password }) {
+  const response = await fetch(API_URL_USER + "/login", {
     method: "POST",
-    body: JSON.stringify({
-      title: taskData.title,
-      topic: taskData.topic,
-      status: taskData.status,
-      description: taskData.description,
-      date: taskData.date,
-    }),
-  });
-
-  if (!response.status === 200) {
-    throw new Error("Ошибка");
-  }
-  const data = await response.json();
-  return data;
-}
-
-//Войти
-export function signin({ login, password }) {
-  return fetch(userHost + "/login", {
-    method: "POST",
-
     body: JSON.stringify({
       login,
       password,
     }),
-  }).then((response) => {
-    if (response.status === 400) {
-      throw new Error("Неверный логин или пароль");
-    }
-
-    return response.json();
   });
+
+  if (response.status === 401) {
+    throw new Error("Нет авторизации");
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }
 
-//Зарегистрироваться
-export function signup({ login, name, password }) {
-  return fetch(userHost, {
+export async function getTasks({ token }) {
+  const response = await fetch(API_URL, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.status === 401) {
+    throw new Error("Ошибка авторизации");
+  } else {
+    const data = await response.json();
+    return data;
+  }
+}
+export async function createTasks({ token, tasks }) {
+  const response = await fetch(API_URL, {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(tasks),
+  });
+  if (response.status === 401) {
+    throw new Error("Ошибка авторизации");
+  } else {
+    const data = await response.json();
+    return data;
+  }
+}
 
+export async function register({ login, password, name }) {
+  const response = await fetch(API_URL_USER, {
+    method: "POST",
     body: JSON.stringify({
       login,
+      password,
       name,
-      password,
     }),
-  }).then((response) => {
-    if (response.status === 400) {
-      throw new Error("Такой пользователь уже существует");
-    }
-
-    return response.json();
   });
+  if (response.status === 400) {
+    throw new Error("Ошибка регистрации");
+  } else {
+    const data = await response.json();
+    return data;
+  }
+}
+export async function deleteCard({ token, id }) {
+  const response = await fetch(API_URL + "/" + id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (response.status >= 400) {
+    throw new Error("Ошибка удаления");
+  } else {
+    const data = await response.json();
+    return data;
+  }
+}
+
+export async function editCardQuery({ token, id, info }) {
+  const response = await fetch(API_URL + "/" + id, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(info),
+  });
+  if (response.status >= 400) {
+    throw new Error("Ошибка редактирования");
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }

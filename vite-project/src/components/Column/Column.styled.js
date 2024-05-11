@@ -1,18 +1,18 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
+import { breakpoints } from "../../lib/breakpoints";
 
-
-export const MainColumn = styled.div`
-  width: 20%;
-  margin: 0 auto;
+export const CardsColumn = styled.div`
+  width: 100%;
   display: block;
-  @media screen and (max-width: 1200px) {
-    width: 100%;
-    margin: 0 auto;
-    display: block;
-  }
+  position: relative;
 `;
 
 export const ColumnTitle = styled.div`
+  padding: 0 10px;
+  margin: 15px 0;
+`;
+
+export const ColumnP = styled.p`
   padding: 0 10px;
   margin: 15px 0;
   color: #94a6be;
@@ -22,13 +22,13 @@ export const ColumnTitle = styled.div`
   text-transform: uppercase;
 `;
 
-export const ColumnCards = styled.div`
-  width: 100%;
+export const MainColumn = styled.div`
+  width: 20%;
+  margin: 0 auto;
   display: block;
-  position: relative;
-  @media screen and (max-width: 1200px) {
+  @media (max-width: ${breakpoints.xl}px) {
     width: 100%;
-    display: flex;
-    overflow-y: auto;
+    margin: 0 auto;
+    display: block;
   }
 `;

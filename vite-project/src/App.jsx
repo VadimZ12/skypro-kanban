@@ -1,30 +1,31 @@
-import { Routes, Route } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { appRoutes } from "./lib/appRoutes";
-import TaskPage from "./Pages/TaskPage/TaskPage";
-import ExitPage from "./Pages/ExitPage/ExitPage";
-import Signin from "./Pages/SignInPage/SignInPage";
-import Register from "./Pages/SignUpPage/SignUpPage";
-import NotFound from "./Pages/NotFoundPage/NotFoundPage";
-import MainPage from "./Pages/MainPage/MainPage";
-import NewTaskPage from "./Pages/NewTaskPage/NewTaskPage";
+import { AppRoutes } from "./lib/appRoutes";
+import MainPage from "./Pages/MainPage";
+import LoginPage from "./Pages/login/LoginPage";
+import RegisterPage from "./Pages/register/RegisterPage";
+import NotFoundPage from "./Pages/NotFoundPage";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import ExitPage from "./Pages/ExitAuthPage";
+import { useState } from "react";
 
-
-export default function App() {
+function App() {
+  const [userData, setUserData] = useState(null);
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
-        <Route path={appRoutes.MAIN} element={<MainPage />}>
-          <Route path={appRoutes.TASK} element={<TaskPage />} />
-          <Route path={appRoutes.NEW_TASK} element={<NewTaskPage />} />
-          <Route path={appRoutes.EXIT} element={<ExitPage />} />
+        <Route path={AppRoutes.MAIN} element={<MainPage />}>
+          <Route
+            path={AppRoutes.EXIT}
+            element={<ExitPage setUserData={setUserData} />}
+          />
         </Route>
       </Route>
-
-      <Route path={appRoutes.SIGNIN} element={<Signin />} />
-      <Route path={appRoutes.SIGNUP} element={<Register />} />
-      <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
+      <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+      <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
+      <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
     </Routes>
   );
 }
+
+export default App;
