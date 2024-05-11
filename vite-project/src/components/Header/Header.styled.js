@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
@@ -36,7 +37,7 @@ export const HeaderNav = styled.nav`
   justify-content: center;
 `;
 
-export const HeaderBtnMainNew = styled.button`
+export const HeaderMainNewCard = styled.div`
   width: 178px;
   height: 30px;
   border-radius: 4px;
@@ -63,7 +64,7 @@ export const HeaderBtnMainNew = styled.button`
   }
 `;
 
-export const HeaderBtnMainNewLink = styled.a`
+export const HeaderBtnMainNewCardText = styled.p`
   color: #ffffff;
 `;
 
@@ -129,6 +130,7 @@ export const HeaderPopUserSetBtn = styled.span`
   }
 `;
 
+
 export const HeaderPopUserSetName = styled.p`
   color: #000;
   font-size: 14px;
@@ -160,6 +162,7 @@ export const HeaderPopUserSetThemeText = styled.div`
   letter-spacing: -0.14px;
 `;
 export const HeaderPopUserSetThemeInp = styled.input`
+
   position: relative;
   width: 24px;
   height: 13px;
@@ -170,17 +173,17 @@ export const HeaderPopUserSetThemeInp = styled.input`
   -moz-appearance: none;
   appearance: none;
   &::before {
-    content: "";
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background-color: #94a6be;
-    transition: 0.5s;
-  }
-  &:checked[type="checkbox"]::before {
-    left: 12px;
-  }
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #94A6BE;
+  transition: 0.5s;
+}
+&:checked[type=checkbox]::before {
+  left: 12px;
+}
 `;
