@@ -7,42 +7,40 @@ export const CardItem = styled.div`
   animation-name: card-animation;
   animation-duration: 500ms;
   animation-timing-function: linear;
-  @media (max-width: ${breakpoints.xl}px) {
+  @media(max-width:${breakpoints.xl}px) { 
     width: 100%;
     display: flex;
     overflow-y: auto;
   }
 `;
 export const CardBtn = styled.div`
-  width: 24px;
+ width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 2px;
-`;
+  padding: 2px;`
 
 export const CardBtnDiv = styled.div`
-  width: 4px;
+   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: #94a6be;
-`;
+  background-color: #94A6BE;`
 
 export const CardWrapper = styled.div`
   width: 220px;
   height: 130px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: stretch;
   padding: 15px 13px 19px;
-  @media (max-width: ${breakpoints.xl}px) {
+  @media(max-width:${breakpoints.xl}px) { 
     width: 220px;
     height: 130px;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -84,11 +82,10 @@ export const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-`;
+  justify-content: space-between;`;
 
 export const CardTitle = styled.h3`
-  font-size: 14px;
+ font-size: 14px;
   font-weight: 500;
   line-height: 18px;
   color: #000000;
@@ -96,25 +93,22 @@ export const CardTitle = styled.h3`
 `;
 
 export const CardDate = styled.div`
-  display: flex;
+display: flex;
   align-items: center;
-  justify-content: flex-start;
-`;
+  justify-content: flex-start;`;
 
 export const CardDateSvg = styled.svg`
-  display: flex;
+display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 13px;
-`;
+  width: 13px;`;
 
 export const CardDateP = styled.p`
-  display: flex;
+display: flex;
   align-items: center;
   justify-content: flex-start;
   margin-left: 6px;
   font-size: 10px;
   line-height: 13px;
-  color: #94a6be;
-  letter-spacing: 0.2px;
-`;
+  color: #94A6BE;
+  letter-spacing: 0.2px;`;
