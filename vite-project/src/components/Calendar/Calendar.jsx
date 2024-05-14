@@ -1,18 +1,25 @@
-import "react-day-picker/dist/style.css";
-import ru from "date-fns/locale/ru";
-import { format } from "date-fns";
-import { DayPicker } from "react-day-picker";
+import { format } from 'date-fns';
 
-export default function Calendar({ selectedDate, setSelectedDate }) {
-  let footer = <p>Пожалуйста, выберите дату.</p>;
-  if (selectedDate) {
-    footer = <p>Вы выбрали {format(selectedDate, "PP", { locale: ru })}.</p>;
+import ru from 'date-fns/locale/ru'
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+
+
+export function Calendar({ selected, setSelected, disabled }) {
+
+
+  let footer = <p>Пожалуйста, выберите дату</p>;
+  if (selected) {
+    footer = <p>Вы выбрали {format(selected, 'PP', { locale: ru })}.</p>;
   }
   return (
+    
     <DayPicker
+      disabled={disabled}
+      locale={ru}
       mode="single"
-      selected={selectedDate}
-      onSelect={setSelectedDate}
+      selected={selected}
+      onSelect={setSelected}
       footer={footer}
     />
   );

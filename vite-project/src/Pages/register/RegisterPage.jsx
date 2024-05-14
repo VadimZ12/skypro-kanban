@@ -1,40 +1,44 @@
-import { Link, useNavigate } from "react-router-dom";
-import Wrapper from "../../components/Wrapper/Wrapper";
-import { appRoutes } from "../../lib/appRoutes";
-import { signup } from "../../api";
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../lib/appRoutes";
+import "./signin.css";
+import { register } from "../../api";
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
 
-export default function Register() {
-  const { login } = useUser();
-  const navigate = useNavigate();
-  const [registerData, setregisterData] = useState({
-    login: "",
+export default function RegisterPage() {
+  const { loginUser } = useUser();
+
+  const regForm = {
     name: "",
+    login: "",
     password: "",
-  });
-  const handleInputChange = (e) => {
+  };
+
+  const [registerData, setRegisterData] = useState(regForm);
+  const [addToDoError, setAddToDoError] = useState(null);
+
+  const handleReg = async (e) => {
+    e.preventDefault();
+    await register(registerData)
+      .then((data) => {
+        loginUser(data.user);
+      })
+      .catch((error) => {
+        setAddToDoError(error.message);
+      });
+  };
+
+  const handleRegChange = (e) => {
     const { name, value } = e.target;
 
-    setregisterData({
+    setRegisterData({
       ...registerData,
       [name]: value,
     });
   };
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    await signup(registerData)
-      .then((responseData) => {
-        login(responseData.user);
-        navigate(appRoutes.MAIN);
-      })
-      .catch((error) => {
-        alert(error.message + ": попробуйте повторить запрос");
-      });
-  };
 
   return (
-    <Wrapper>
+    <div className="wrapper">
       <div className="container-signup">
         <div className="modal">
           <div className="modal__block">
@@ -45,47 +49,50 @@ export default function Register() {
               <input
                 className="modal__input first-name"
                 type="text"
-                onChange={handleInputChange}
                 name="name"
                 id="first-name"
-                value={registerData.name}
                 placeholder="Имя"
+                value={registerData.name}
+                onChange={handleRegChange}
+                label="name"
               />
               <input
                 className="modal__input login"
                 type="text"
-                onChange={handleInputChange}
                 name="login"
                 id="loginReg"
-                value={registerData.login}
                 placeholder="Эл. почта"
+                value={registerData.login}
+                onChange={handleRegChange}
+                label="login"
               />
               <input
                 className="modal__input password-first"
                 type="password"
-                onChange={handleInputChange}
                 name="password"
-                value={registerData.password}
                 id="passwordFirst"
                 placeholder="Пароль"
+                value={registerData.password}
+                onChange={handleRegChange}
+                label="password"
               />
+              <p style={{ color: "red" }}>{addToDoError}</p>
               <button
-                onClick={handleRegister}
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
+                onClick={handleReg}
               >
-                <a href="../main.html">Зарегистрироваться</a>{" "}
+                Зарегистрироваться
               </button>
               <div className="modal__form-group">
                 <p>
-                  Уже есть аккаунт?{" "}
-                  <Link to={appRoutes.SIGNIN}>Войдите здесь</Link>
+                  <Link to={AppRoutes.LOGIN}>Войдите здесь</Link>
                 </p>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 }
